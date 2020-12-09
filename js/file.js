@@ -8,7 +8,9 @@ $(document).ready(function() {
     $('#signup').click(function(){
         var letter = /^([a-zA-Z]+\s?)*$/;
         var pattern = /^(0|[+91]{3})?[7-9][0-9]{9}$/;
-        var pattemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z0-9]{2,3}$/;
+        // var regidentical=/(\d)\1{9}/g;
+        // var pattemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z0-9]{2,3}$/;
+        var pattemail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
         var pattpass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-])\S{8,16}$/;
         var pattanswer = /^(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
 
@@ -26,10 +28,10 @@ $(document).ready(function() {
             alert('First Name Is Required !');
             $('#fname').focus();
             return false;
-        // } else if (lname == "") {
-        //     alert('Last Name Is Required !');
-        //     $('#lname').focus();
-        //     return false;
+        } else if (lname == "") {
+            alert('Last Name Is Required !');
+            $('#lname').focus();
+            return false;
         } else if (email == "") {
             alert('Email Is Required !');
             $('#email').focus();
@@ -55,7 +57,7 @@ $(document).ready(function() {
             $('#cpassword').focus();
             return false;
         } else if (password != cpassword) {
-            alert('Password should be same !');
+            alert('Confirm Password and password should be same !');
             $('#cpassword').focus();
             return false;
         } else if (isNaN(mobile)){ 
@@ -75,13 +77,14 @@ $(document).ready(function() {
             $('#name').focus();
             return false;
         } else if (!(password.match(pattpass))) {
-            alert("Invalid Password !");
+            alert(" Password should be of 8-16 characters,with Combination of UPPERCASE, lowercase, special character and numeric value.!");
             $('#password').focus();
             return false;
         } else if (!(email.match(pattemail))) {
             alert('Invalid Email Address !');
             return false;
-        } else if (!(sans.match(pattanswer))) {
+        // } else if (!(sans.match(pattanswer))) {
+        } else if (!(sans.match(letter))) {
             alert('Invalid Answer !');
             $('#sanswer').focus();
             return false;

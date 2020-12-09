@@ -8,12 +8,12 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <?php include('header.php'); 
 require('Dbcon.php');
 require('User.php');
-$conn = new Dbcon();
+$dbcon = new Dbcon();
 $details = new User();
 if(isset($_POST['submit'])) {
 	$email=trim(isset($_POST['email'])?$_POST['email']:'');
 	$password=trim(isset($_POST['password'])?$_POST['password']:'');
-	$msg = $details -> login($email,$password,$conn);
+	$msg = $details -> login($email,$password,$dbcon -> conn);
 }
 
 ?>

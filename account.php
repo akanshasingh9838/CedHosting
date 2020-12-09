@@ -38,7 +38,7 @@ if(isset($_POST['submit'])){
 					 </div>
 					 <div>
 						 <span>Email Address<label>*</label></span>
-						 <input type="text" name="email" id="email"> 
+						 <input type="email" name="email" id="email"> 
 					 </div>
 					 <div>
 						 <span>Mobile<label>*</label></span>
