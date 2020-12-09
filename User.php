@@ -13,13 +13,18 @@
 					echo "successfull";
 					if($row['is_admin']== "1"){
 						$_SESSION['userdata']=array('email' => $row['email'],'password' => $row['password']);
-					echo "<script>alert('admin successfull')</script>";
+					echo "<script>alert('admin login successfull')</script>";
 					echo ("<script type='text/javascript'> location.href='admin/index.html'</script>");
+					}
+					else{
+						$_SESSION['userdata']=array('email' => $row['email'],'password' => $row['password']);
+						echo ("<script type='text/javascript'> location.href='index.php'</script>");
+
 					}
 				}
 			}
 			else{
-				echo "no result";
+				echo "<script>alert('Login Fail');</script>";
 			}
 
 		}
