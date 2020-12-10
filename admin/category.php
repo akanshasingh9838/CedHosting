@@ -61,7 +61,7 @@
                   </div>
                 </div> -->
                 <div class="text-center">
-                  <button type="button" class="btn btn-primary mt-4" id="addCategory">Add Category</button>
+                  <button type="button" class="btn btn-primary mt-4" id="addCategory">Add Category Now</button>
                 </div>
               </form>
             </div>
