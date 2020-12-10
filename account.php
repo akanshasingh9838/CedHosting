@@ -16,10 +16,13 @@ if(isset($_POST['submit'])){
 	$sques = trim(isset($_POST['sques'])? $_POST['sques'] : '');
 	$sans = trim(isset($_POST['sans'])? $_POST['sans'] : '');
 	// echo $name , $email , $mobile , $password , $sques , $sans;
-	$details -> signup($email,$name,$mobile,$password,$sques,$sans,$dbcon -> conn);
-
+	$msg = $details -> signup($email,$name,$mobile,$password,$sques,$sans,$dbcon -> conn);
+	if($msg == true){
+		echo ("<script>window.location.href='verification1.php?email=".$email."&name=".$name."&mobile=".$mobile."';</script>");
+		
+	}
+	
 }
-
 ?>
 	<div class="content">				
 	<div class="main-1">

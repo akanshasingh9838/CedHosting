@@ -89,7 +89,7 @@ $(document).ready(function() {
             $('#sanswer').focus();
             return false;
         } else {
-            alert('You have successfully signed up!!!');
+            // alert('You have successfully signed up!!!');
             // $.ajax({
             //     url: 'ajaxRequest.php',
             //     type: 'POST',
@@ -109,6 +109,69 @@ $(document).ready(function() {
             //     }
             // });
         }
+    });
+
+    $('#verifyEmail').click(function(){
+        $('#form_email').show();
+    });
+
+    $('#submit_email_otp').click(function(){
+        event.preventDefault();
+        var email_otp = $('#email_otp').val();
+       if(email_otp == ""){
+           alert("Firstly Enter OTP , received in your email");
+       }
+       else{
+        $.ajax({
+            url:'userRequest.php',
+            type:'POST',
+            data:{
+                email_otp:email_otp, 
+                action : 'verify_email_otp'
+            },
+            success:function(result){
+                console.log(result);
+            },
+            error: function(){
+                alert("error");
+            }
+        });
+       }
+    });
+
+    $('#submit_phone_otp').click(function(){
+        event.preventDefault();
+        alert("helo");
+        var phone_otp = $('#phone_otp').val();
+       if(phone_otp == ""){
+           alert("Firstly Enter OTP , received in your email");
+       }
+       else{
+        $.ajax({
+            url:'userRequest.php',
+            type:'POST',
+            data:{
+                phone_otp:phone_otp, 
+                action : 'verify_phone_otp'
+            },
+            success:function(result){
+                console.log(result);
+            },
+            error: function(){
+                alert("error");
+            }
+        });
+    }
+    });
+
+    //For adding category in admin category.php
+    $('#addCategory').click(function(){
+        alert("hello");
+        var categoryName = $('categoryName').val();
+        var linkName = $('linkName').val();
+        console.log(categoryName);
+        console.log(linkName);
+
     });
 
 });

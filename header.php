@@ -1,5 +1,5 @@
 <?php
-
+	session_start();
 	$filename=basename($_SERVER['REQUEST_URI']);
 	$file=explode('?',$filename);
 	//echo $filename;

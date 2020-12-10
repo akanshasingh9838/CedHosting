@@ -12,9 +12,9 @@
 				while($row = $this -> result -> fetch_assoc()){
 					echo "successfull";
 					if($row['is_admin']== "1"){
-						$_SESSION['userdata']=array('email' => $row['email'],'password' => $row['password']);
+						$_SESSION['userdata']=array('email' => $row['email'],'password' => $row['password'],'id' => $row['id']);
 					echo "<script>alert('admin login successfull')</script>";
-					echo ("<script type='text/javascript'> location.href='admin/index.html'</script>");
+					echo ("<script type='text/javascript'> location.href='admin/index.php'</script>");
 					}
 					else{
 						$_SESSION['userdata']=array('email' => $row['email'],'password' => $row['password']);
@@ -36,11 +36,11 @@
 				while($row = $this -> result->fetch_assoc()) {			
 					if($row["email"] == $email){
 						echo "<script>alert('Email already exists');</script>";
-						return;
+						return false;
 					}
 					if($row["mobile"] == $mobile){
 						echo "<script>alert('Mobile no. already exists');</script>";
-						return;
+						return false;
 					}
 				}
 			}
@@ -48,12 +48,35 @@
 				$sql ="INSERT INTO `tbl_user`(`email`,`name`, `mobile`, `email_approved`,`phone_approved`,
 	             `active`,`is_admin`, `sign_up_date`,`password`,`security_question`,`security_answer`) VALUES ('".$email."','".$name."','".$mobile."',0,0,0,0, NOW(), '".$password."','".$sques."','".$sans."')";
 				  if ($conn -> query($sql) == TRUE) {
-				  	return;
+				// echo ("<script>window.location.href='verification.php?email=".$email."';</script>");
+				  	return true;
 				 }
 				 else {
 		            echo "<script>alert('Sign Up fail');</script>";	          
 		        }       
 			} 		
 		}
+
+		function status_email_approved($conn){
+			$sql = "UPDATE `tbl_user` SET `email_approved` = '1' AND `active`= '1' WHERE `id` ='36'";
+			$res= mysqli_query($conn,$sql);
+			// if (mysqli_query($conn, $sql)) {
+			// 	echo "<script>alert('Email approved !');</script>";
+			// } else {
+			// 	echo "<script>alert('Request Failed !');</script>";
+			// }
+			// return $msg;
+			}
+
+		function status_phone_approved($conn){
+			$sql = "UPDATE `tbl_user` SET `phone_approved` = '1' AND `active`= '1' WHERE `id` ='34'";
+			$res= mysqli_query($conn,$sql);
+			if (mysqli_query($conn, $sql)) {
+            	return true;		
+			} else {
+			$msg = "<script>alert(Status Not Approved!);</script>";
+			}
+			return $msg;
+			}
 	}
 ?>
