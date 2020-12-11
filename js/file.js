@@ -3,6 +3,7 @@ $(document).ready(function() {
     $('#security').hide();
     $('#squestion').change(function(){
         $('#security').show();
+        // $('#form_email').show();
     });
 
     $('#signup').click(function(){
@@ -10,7 +11,7 @@ $(document).ready(function() {
         var pattern = /^(0|[+91]{3})?[7-9][0-9]{9}$/;
         // var regidentical=/(\d)\1{9}/g;
         // var pattemail = /^\w+@[a-zA-Z_]+?\.[a-zA-Z0-9]{2,3}$/;
-        var pattemail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;
+        var pattemail = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9]+\.[a-zA-Z]{2,4}$/;    
         var pattpass = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-])\S{8,16}$/;
         var pattanswer = /^(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
 
@@ -113,6 +114,14 @@ $(document).ready(function() {
 
     $('#verifyEmail').click(function(){
         $('#form_email').show();
+        var email = $('#email').val();
+        alert("OTP has been sent to your email "+email);
+    });
+
+    $('#verifyPhone').click(function(){
+        $('#form_email').show();
+        var mobile = $('#mobile').val();
+        alert("OTP has been sent to your phone "+mobile);
     });
 
     $('#submit_email_otp').click(function(){
@@ -132,10 +141,17 @@ $(document).ready(function() {
                 action : 'verify_email_otp'
             },
             success:function(result){
-                console.log(result);
+                // console.log(result);
+                if(result == 1){
+                    alert('Email approved !');
+                    window.location.href= 'login.php';
+                }
+                else{
+                   alert('Request Failed !!');
+                }
             },
             error: function(){
-                alert("error");
+                alert('Request Failed !');
             }
         });
        }
@@ -143,8 +159,8 @@ $(document).ready(function() {
 
     $('#submit_phone_otp').click(function(){
         event.preventDefault();
-        alert("helo");
         var phone_otp = $('#phone_otp').val();
+        var mobile = $('#mobile').val();
        if(phone_otp == ""){
            alert("Firstly Enter OTP , received in your email");
        }
@@ -154,10 +170,18 @@ $(document).ready(function() {
             type:'POST',
             data:{
                 phone_otp:phone_otp, 
+                mobile : mobile,
                 action : 'verify_phone_otp'
             },
             success:function(result){
-                console.log(result);
+                // console.log(result);
+                if(result == 1){
+                    alert('Phone approved !');
+                    window.location.href= 'login.php';
+                }
+                else{
+                   alert('Request Failed !!');
+                }
             },
             error: function(){
                 alert("error");

@@ -1,5 +1,5 @@
 <?php 
-class Product{
+class Product {
     function fetchParentCategory($conn){
         $sql = "SELECT * FROM `tbl_product` WHERE `id` = 1 AND 	`prod_parent_id` = 1 ";
         $result = $conn->query($sql);
@@ -33,6 +33,19 @@ class Product{
         echo json_encode($row);
     }
 
+    function fetchCategorynav($conn)
+    {
+        $row = array();
+        $sql = "SELECT * FROM `tbl_product` WHERE `prod_available` = 1 ";
+        $result = $conn->query($sql);
+        //while ($data = $result->fetch_assoc()) {
+        return $result;
+            
+        }
+        // echo $row;
+    }
+    
 
-}
+
+
 ?>

@@ -2,11 +2,11 @@
 include('header.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-// require '/home/cedcoss/vendor/autoload.php';
-require 'D:\xampp installation\phpMyAdmin\vendor\autoload.php';
-$email= $_GET['email'];
-$mobile = $_GET['mobile'];
-$name= $_GET['name'];
+require '/home/cedcoss/vendor/autoload.php';
+// require 'D:\xampp installation\phpMyAdmin\vendor\autoload.php';
+$email= isset($_GET['email'])?$_GET['email']:'';
+$mobile = isset($_GET['mobile'])?$_GET['mobile']:'';
+$name= isset($_GET['name'])?$_GET['name']:'';
 $otp = rand(1000,9999);
 if(isset($_POST['verifyEmail'])){
     // $otp = rand(1000,9999);
@@ -18,7 +18,7 @@ if(isset($_POST['verifyEmail'])){
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Username = 'akanshasingh9838@gmail.com';
-    $mail->Password = 'varnikasingh0808';
+    $mail->Password = 'singhvarnika08081907';
     $mail->SMTPSecure = 'tls';
     $mail->Port = 587;
 
@@ -38,6 +38,7 @@ if(isset($_POST['verifyEmail'])){
 }
 //pHONE vERIFICATION
 if(isset($_POST['verifyPhone'])){
+    $_SESSION['userdata']['otp']=$otp;
     $fields = array(
         "sender_id" => "FSTSMS",
         "message" => "Verify Your Account , Please enter this otp ..  ".$otp,
@@ -63,7 +64,7 @@ if(isset($_POST['verifyPhone'])){
         "accept: */*",
         "cache-control: no-cache",
         "content-type: application/json"
-    ),
+      ),
     ));
 
     $response = curl_exec($curl);
@@ -94,7 +95,7 @@ if(isset($_POST['verifyPhone'])){
 									  <input type="submit" name ="verifyEmail" id ="verifyEmail" value="Verify through Email">
 									</form>
 
-									<form action="" method="post"  id="form_email">  <!--style="display:none;"-->
+									<form action="" method="post"  id="form_email" >  <!--style="display:none;" -->
 									  <div>
 										<span>Enter Otp Recieved<label>*</label></span>
 										<input type="text" name="email_otp" id="email_otp"> 
@@ -108,9 +109,9 @@ if(isset($_POST['verifyPhone'])){
 									<form action="" method="post">
 									  <div>
 										<span>Phone Number<label>*</label></span>
-										<input type="text" name="mobile" value = "<?php echo $mobile; ?>" disabled> 
+										<input type="text" name="mobile" id="mobile" value = "<?php echo $mobile; ?>" disabled> 
 									  </div>
-									  <input type="submit" name ="verifyPhone" value="Verify through Phone">
+									  <input type="submit" name ="verifyPhone" id="verifyPhone" value="Verify through Phone">
 									</form>
 
 									<form action="" method="post">

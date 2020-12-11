@@ -1,10 +1,17 @@
 <?php
 	session_start();
+	require_once('Dbcon.php');
+	require_once('Product.php');
+	$dbcon = new Dbcon();
+	$products = new Product();
 	$filename=basename($_SERVER['REQUEST_URI']);
 	$file=explode('?',$filename);
 	//echo $filename;
 	$hostingmenu=array("linuxhosting.php","cmshosting.php","windowshosting.php","wordpresshosting.php");
-
+	$hostingCat = $products-> fetchCategorynav($dbcon-> conn);
+	// foreach($hostingCat as $key => $value){
+	// 	echo $value['prod_name'];
+	// }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -72,7 +79,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<i class="icon-bar"></i>
 							</button>				  
 							<div class="navbar-brand">
-								<h1><a href="index.php"><span style="color: #585CA7;">Ced</span> <span style="color:#e7663f;">Hosting</span></a></h1>  <!-- background-color: #e7663f;border-radius:10px; -->
+								<!-- <h1><a href="index.php"><span style="color: #585CA7;">Ced</span> <span style="color:#e7663f;">Hosting</span></a></h1>  background-color: #e7663f;border-radius:10px; -->
+								<!-- admin/assets/img/brand -->
+								<h1><a href="index.php"><img src="admin/assets/img/brand/logo.png" height="100" width="160" /></a></h1>  <!-- background-color: #e7663f;border-radius:10px; -->
+
 							</div>
 						</div>
 
@@ -91,12 +101,24 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<a href="#" class="dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hosting<i class="caret"></i></a>
 							
 								
-								<ul class="dropdown-menu">
-									<li class="<?php if($file[0]=="linuxhosting.php"):?>active<?php  endif; ?>"><a href="linuxhosting.php">Linux hosting</a></li>
-									<li class="<?php if($file[0]=="wordpresshosting.php"):?>active<?php  endif; ?>"><a href="wordpresshosting.php">WordPress Hosting</a></li>
-									<li class="<?php if($file[0]=="windowshosting.php"):?>active<?php  endif; ?>"><a href="windowshosting.php">Windows Hosting</a></li>
-									<li class="<?php if($file[0]=="cmshosting.php"):?>active<?php  endif; ?>"><a href="cmshosting.php">CMS Hosting</a></li>
-								</ul>			
+								<!-- <ul class="dropdown-menu"> -->
+									<!-- <//?php foreach($hostingCat as $key => $value){ ?>
+											<li class= "<//?php if($file[0]=="linuxhosting.php"):?>active<//?php  endif; ?>" ><a href="<//?php $value['prod_name'] ?>"></a><//?php echo $value['prod_name']; ?></li>
+									<//?php } ?> -->
+									<!-- <li class="<//?php if($file[0]=="linuxhosting.php"):?>active<//?php  endif; ?>"><a href="linuxhosting.php">Linux hosting</a></li>
+									<li class="<//?php if($file[0]=="wordpresshosting.php"):?>active<//?php  endif; ?>"><a href="wordpresshosting.php">WordPress Hosting</a></li>
+									<li class="<//?php if($file[0]=="windowshosting.php"):?>active<//?php  endif; ?>"><a href="windowshosting.php">Windows Hosting</a></li>
+									<li class="<//?php if($file[0]=="cmshosting.php"):?>active<//?php  endif; ?>"><a href="cmshosting.php">CMS Hosting</a></li> --> 
+									<ul class="dropdown-menu">
+									<?php 
+										// $show_category = $product->show_category($db->connect(), '!=');
+										foreach ($hostingCat as $key => $value) {
+											echo "<li><a href='".$value['link']."'>".$value['prod_name']."</a></li>";
+										}
+									?>
+									</ul>
+								
+								<!-- </ul>			 -->
 						    </li>
 								
 							

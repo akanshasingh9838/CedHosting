@@ -18,8 +18,7 @@ if(isset($_POST['submit'])){
 	// echo $name , $email , $mobile , $password , $sques , $sans;
 	$msg = $details -> signup($email,$name,$mobile,$password,$sques,$sans,$dbcon -> conn);
 	if($msg == true){
-		echo ("<script>window.location.href='verification1.php?email=".$email."&name=".$name."&mobile=".$mobile."';</script>");
-		
+		echo ("<script>window.location.href='verification1.php?email=".$email."&name=".$name."&mobile=".$mobile."';</script>");		
 	}
 	
 }
