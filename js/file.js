@@ -118,6 +118,7 @@ $(document).ready(function() {
     $('#submit_email_otp').click(function(){
         event.preventDefault();
         var email_otp = $('#email_otp').val();
+        var email = $('#email').val();
        if(email_otp == ""){
            alert("Firstly Enter OTP , received in your email");
        }
@@ -127,6 +128,7 @@ $(document).ready(function() {
             type:'POST',
             data:{
                 email_otp:email_otp, 
+                email:email,
                 action : 'verify_email_otp'
             },
             success:function(result){
@@ -164,14 +166,6 @@ $(document).ready(function() {
     }
     });
 
-    //For adding category in admin category.php
-    $('#addCategory').click(function(){
-        alert("hello");
-        var categoryName = $('categoryName').val();
-        var linkName = $('linkName').val();
-        console.log(categoryName);
-        console.log(linkName);
-
-    });
+   
 
 });

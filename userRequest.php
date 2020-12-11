@@ -7,12 +7,13 @@ $user = new User();
 $dbcon=new Dbcon();
 if ($_POST['action'] == 'verify_email_otp') {
     $email_otp = $_POST['email_otp'];
+    $email = $_POST['email'];
     // $id=$_SESSION['userdata']['id'];
     // echo "print otp :".     $email_otp;
     // echo "<pre>";
     // print_r($_SESSION);
     if($email_otp == $_SESSION['userdata']['otp']){
-        $user -> status_email_approved($dbcon -> conn);
+        $user -> status_email_approved($dbcon -> conn,$email);
     }
 }
 

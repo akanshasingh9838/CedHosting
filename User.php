@@ -12,12 +12,12 @@
 				while($row = $this -> result -> fetch_assoc()){
 					echo "successfull";
 					if($row['is_admin']== "1"){
-						$_SESSION['userdata']=array('email' => $row['email'],'password' => $row['password'],'id' => $row['id']);
+						$_SESSION['admindata']=array('email' => $row['email'],'password' => $row['password'],'id' => $row['id'], 'name'=>$row['name']);
 					echo "<script>alert('admin login successfull')</script>";
 					echo ("<script type='text/javascript'> location.href='admin/index.php'</script>");
 					}
 					else{
-						$_SESSION['userdata']=array('email' => $row['email'],'password' => $row['password']);
+						$_SESSION['userdata']=array('email' => $row['email'],'password' => $row['password'],'id' => $row['id']);
 						echo ("<script type='text/javascript'> location.href='index.php'</script>");
 
 					}
@@ -57,8 +57,8 @@
 			} 		
 		}
 
-		function status_email_approved($conn){
-			$sql = "UPDATE `tbl_user` SET `email_approved` = '1' AND `active`= '1' WHERE `id` ='36'";
+		function status_email_approved($conn,$email){
+			$sql = "UPDATE `tbl_user` SET `email_approved` = '1' AND `active`= '1' WHERE `email` ='$email'";
 			$res= mysqli_query($conn,$sql);
 			// if (mysqli_query($conn, $sql)) {
 			// 	echo "<script>alert('Email approved !');</script>";

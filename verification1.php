@@ -2,7 +2,8 @@
 include('header.php');
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require '/home/cedcoss/vendor/autoload.php';
+// require '/home/cedcoss/vendor/autoload.php';
+require 'D:\xampp installation\phpMyAdmin\vendor\autoload.php';
 $email= $_GET['email'];
 $mobile = $_GET['mobile'];
 $name= $_GET['name'];
@@ -88,7 +89,7 @@ if(isset($_POST['verifyPhone'])){
 									<form action="" method="post" >
 									  <div>
 										<span>Email Address<label>*</label></span>
-										<input type="text" name="email" value = "<?php echo $email; ?>" disabled> 
+										<input type="text" name="email" id ="email" value = "<?php echo $email; ?>" disabled> 
 									  </div>
 									  <input type="submit" name ="verifyEmail" id ="verifyEmail" value="Verify through Email">
 									</form>

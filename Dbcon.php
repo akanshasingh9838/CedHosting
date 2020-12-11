@@ -3,7 +3,7 @@ class Dbcon{
 	public $siteurl="";
 	public $dbhost="localhost";
 	public $dbuser="root";
-	public $dbpass="";
+	public $dbpass="varnika";
 	public $dbname="Cedhosting";
 	public $conn;
 

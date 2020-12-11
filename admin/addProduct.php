@@ -1,27 +1,26 @@
 <?php
   require 'header.php';
-  require '../Product.php';
-  require '../Dbcon.php';
-  $Product = new Product();
-  $dbcon= new Dbcon();
-$data =  $Product->fetchParentCategory($dbcon -> conn);
-// print_r($data);
+//   require '../Product.php';
+//   $Product = new Product();
 
-$msg = '';
-if (isset($_POST['submit'])) {
-    $cname = $_POST['cname'];
-    $link = $_POST['link'];
-    $pid = $_POST['pid'];
-    // echo $pid;
-    // exit();
+// $data =  $Product->fetchParentCategory();
+// // print_r($data);
 
-    $res = $Product->addCategory($cname, $link, $pid,$dbcon -> conn);
-    if ($res == true) {
-        $msg = "Successfully Added Your Category !";
-    } else {
-        $msg = "Failed !";
-    }
-}
+// $msg = '';
+// if (isset($_POST['submit'])) {
+//     $cname = $_POST['cname'];
+//     $link = $_POST['link'];
+//     $pid = $_POST['pid'];
+//     // echo $pid;
+//     // exit();
+
+//     $res = $Product->addCategory($cname, $link, $pid);
+//     if ($res == true) {
+//         $msg = "Successfully Added Your Category !";
+//     } else {
+//         $msg = "Faild !";
+//     }
+// }
 ?>
 
   <!-- Main content -->
@@ -274,12 +273,12 @@ if (isset($_POST['submit'])) {
         <div class="header-body">
           <div class="row align-items-center py-4">
             <div class="col-lg-6 col-7">
-              <h6 class="h2 text-white d-inline-block mb-0">Category</h6>
+              <h6 class="h2 text-white d-inline-block mb-0">Add Product</h6>
               <nav aria-label="breadcrumb" class="d-none d-md-inline-block ml-md-4">
                 <ol class="breadcrumb breadcrumb-links breadcrumb-dark">
                   <li class="breadcrumb-item"><a href="#"><i class="fas fa-home"></i></a></li>
                   <li class="breadcrumb-item"><a href="#">Dashboards</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Category</li>
+                  <li class="breadcrumb-item active" aria-current="page">Add Product</li>
                 </ol>
               </nav>
             </div>
@@ -293,116 +292,132 @@ if (isset($_POST['submit'])) {
       </div>
     </div>
     <!-- Page content -->
-    <div class="container-fluid mt--6">
-      <div class="row justify-content-center">
-        <div class="col-xl-8">
-          <div class="card bg-default">
-          <div class="card bg-secondary border-0 mb-0">
-            <div class="card-header bg-transparent pb-5 text-center">
-              <h2>Create Category</h2>
-            </div>
-            <?php echo $msg; ?>
-            <div class="card-body px-lg-5 py-lg-5">
-              <div class="text-center text-muted mb-4">
-                <!-- <small>Or sign in with credentials</small> -->
+    <div class="col-xl-12 order-xl-1">
+          <!-- <div class="card">
+            <div class="card-header">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Edit profile </h3>
+                </div>
+                <div class="col-4 text-right">
+                  <a href="#!" class="btn btn-sm btn-primary">Settings</a>
+                </div>
               </div>
-              
-                <form role="form" method="post" action="category.php">
-                <div class="form-group mb-3">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-bullet-list-67 text-default"></i></span>
+            </div> -->
+            <div class="card-body">
+              <form>
+                <h6 class="heading-small text-muted mb-4">Enter Product Details</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Select Product Category</label>
+                        <!-- <input type="text" id="input-username" class="form-control" placeholder="Username" value="lucky.jesse"> -->
+                        <select name="" id="" class="form-control">
+                            <option value="">Select Category</option>
+                            <option value="">Linux hosting</option>
+                            <option value="">Windows hosting</option>
+                            <option value="">CMSHosting</option>
+                            <option value="">WordPress hosting</option>
+                        </select>
+                      </div>
                     </div>
-                    <input class="form-control" value="<?php echo $data[0]['prod_name']; ?>" type="text" readonly>
-                    <input type="hidden" name="pid" value="<?php echo $data[0]['prod_parent_id']; ?>">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Enter Product Name</label>
+                        <input type="text" id="input-email" class="form-control" placeholder="Enter Product Name">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Page URL</label>
+                        <input type="text" id="input-first-name" class="form-control" placeholder="Page URL">
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-bullet-list-67 text-default"></i></i></span>
+                <hr class="my-4" />
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Product Description (Enter Product Description Below)</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Enter Monthly Price</label>
+                        <input type="text" id="input-username" class="form-control" placeholder="ex: 23">
+                      </div>
                     </div>
-                    <input class="form-control" name="cname" placeholder="Category Name" type="text">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Enter Annual Price</label>
+                        <input type="text" id="input-email" class="form-control" placeholder="ex: 23">
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">SKU</label>
+                        <input type="text" id="input-first-name" class="form-control" placeholder="SKU">
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div class="form-group">
-                  <div class="input-group input-group-merge input-group-alternative">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text"><i class="ni ni-bullet-list-67 text-default"></i></span>
+                <hr class="my-4" />
+                <!-- Address -->
+                <h6 class="heading-small text-muted mb-4">Features</h6>
+                <div class="pl-lg-4">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-username">Web Space(in GB)</label>
+                        <input type="text" id="input-username" class="form-control" placeholder="Web Space(in GB)">
+                        <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
+                      </div>
                     </div>
-                    <input class="form-control" name="link" placeholder="Link" type="text">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-email">Bandwidth (in GB)</label>
+                        <input type="text" id="input-email" class="form-control" placeholder="Bandwidth (in GB)">
+                        <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
+                      </div>
+                    </div>
                   </div>
-                </div>
-                <!-- <div class="custom-control custom-control-alternative custom-checkbox">
-                  <input class="custom-control-input" id=" customCheckLogin" type="checkbox">
-                  <label class="custom-control-label" for=" customCheckLogin">
-                    <span class="text-muted">Remember me</span>
-                  </label>
-                </div> -->
-                <div class="text-center">
-                  <!-- <button type="button" name="submit" class="btn btn-primary my-4">Create Category</button> -->
-                  <input type="submit" value="Create Category" class="btn btn-primary" name="submit">
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Free Domain</label>
+                        <input type="text" id="input-first-name" class="form-control" placeholder="Free Domain">
+                        <h6 class="heading-small text-muted mb-4">Enter 0 if no domain available in this service</h6>
+                      </div>
+                    </div>
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Language / Technology Support</label>
+                        <input type="text" id="input-first-name" class="form-control" placeholder="Free Domain">
+                        <h6 class="heading-small text-muted mb-4">Separate by (,) Ex: PHP, MySQL, MongoDB</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-6">
+                      <div class="form-group">
+                        <label class="form-control-label" for="input-first-name">Mailbox</label>
+                        <input type="text" id="input-first-name" class="form-control" placeholder="Free Domain">
+                        <h6 class="heading-small text-muted mb-4">Enter Number of mailbox will be provided, enter 0 if none</h6>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="text-center">
+                      <input type="submit" value="Create Now" class="btn btn-primary">
+                    </div>
                 </div>
               </form>
             </div>
-          </div>
-            
-          </div>
-        </div>    
-      </div>
-
-      <div class="col-md-4">
-        <div class="modal fade" id="modal-form" tabindex="-1" role="dialog" aria-labelledby="modal-form" aria-hidden="true">
-          <div class="modal-dialog modal- modal-dialog-centered modal-sm" role="document">
-            <div class="modal-content">
-              <div class="modal-body p-0">
-                <div class="card bg-secondary border-0 mb-0">
-                  <div class="card-header bg-transparent pb-5">
-                    
-                    <div class="btn-wrapper text-center">
-                      
-                    <h1>Edit Category</h1>
-                    </div>
-                  </div>
-                  <div class="card-body px-lg-5 py-lg-5">
-                    <form role="form" id='editform'>
-                    
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-    <div class="row">
-        <div class="col-xl-12">
-          <div class="card">
-            <div class="table-responsive">
-              <table  id='tableData' class="table align-items-center table-flush cattable">
-                <thead class="thead-light">
-                  <tr>
-                    <th scope="col">Category Id</th>
-                    <th scope="col">Parent Id</th>
-                    <th scope="col">Category Name</th>
-                    <th scope="col">Link</th>
-                    <th scope="col">Status</th>
-                    <th scope="col">Date</th>
-                    <th id="actionth" scope="col">Action</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  
-                </tbody>
-              </table>
-            </div>
-          </div>
-        </div>
-      </div>
 <?php
   require 'footer.php';
 ?>
-</div>
+          </div>
+        </div>
