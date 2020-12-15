@@ -1,5 +1,5 @@
 <?php 
-include('header.php');
+require_once('header.php');
 $id= $_GET['email'];
 if(isset($_POST['submitEmail'])){
 require 'PHPMailerAutoload.php';

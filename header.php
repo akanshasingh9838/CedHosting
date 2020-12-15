@@ -9,9 +9,6 @@
 	//echo $filename;
 	$hostingmenu=array("linuxhosting.php","cmshosting.php","windowshosting.php","wordpresshosting.php");
 	$hostingCat = $products-> fetchCategorynav($dbcon-> conn);
-	// foreach($hostingCat as $key => $value){
-	// 	echo $value['prod_name'];
-	// }
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -79,9 +76,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<i class="icon-bar"></i>
 							</button>				  
 							<div class="navbar-brand">
-								<!-- <h1><a href="index.php"><span style="color: #585CA7;">Ced</span> <span style="color:#e7663f;">Hosting</span></a></h1>  background-color: #e7663f;border-radius:10px; -->
+								<h1><a href="index.php"><span style="color: #585CA7;">Ced</span> <span style="color:#e7663f;">Hosting</span></a></h1>  <!--background-color: #e7663f;border-radius:10px;-->
 								<!-- admin/assets/img/brand -->
-								<h1><a href="index.php"><img src="admin/assets/img/brand/logo.png" height="100" width="160" /></a></h1>  <!-- background-color: #e7663f;border-radius:10px; -->
+								<!-- <h1><a href="index.php"><img src="admin/assets/img/brand/logo.png" height="100" width="160" /></a></h1>  background-color: #e7663f;border-radius:10px; -->
 
 							</div>
 						</div>
@@ -113,7 +110,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<?php 
 										// $show_category = $product->show_category($db->connect(), '!=');
 										foreach ($hostingCat as $key => $value) {
-											echo "<li><a href='".$value['link']."'>".$value['prod_name']."</a></li>";
+											echo "<li><a href='".$value['html']."?id=".$value['id']."'>".$value['prod_name']."</a></li>";
 										}
 									?>
 									</ul>
@@ -128,13 +125,14 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="<?php if($file[0]=="contact.php"):?>active<?php  endif; ?>"><a href="contact.php">Contact</a></li>
 								<li class="<?php if($file[0]=="cart.php"):?>active<?php  endif; ?>"><a href="cart.php"><i class="fas fa-shopping-cart"></i></a></li>
 								<?php
-								if(!isset($_SESSION['userdata']))
+								if(!isset($_SESSION['userdata'])|| !isset($_SESSION['admindata']))
 								{?>
 								<li class="<?php if($file[0]=="login.php"):?>active<?php  endif; ?>"><a href="login.php">Login</a></li>
 								<?php
 								}
-								elseif (isset($_SESSION['userdata'])) {
-									# code...?>
+								//elseif (isset($_SESSION['userdata'])) {
+									# code...
+								else{ ?>
 									<li class="<?php if($file[0]=="logout.php"):?>active<?php  endif; ?>"><a href="logout.php">Logout</a></li>
 									<?php
 								}

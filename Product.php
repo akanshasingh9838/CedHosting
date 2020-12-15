@@ -36,7 +36,7 @@ class Product {
     function fetchCategorynav($conn)
     {
         $row = array();
-        $sql = "SELECT * FROM `tbl_product` WHERE `prod_available` = 1 ";
+        $sql = "SELECT * FROM `tbl_product` WHERE `prod_available` = 1 AND `prod_parent_id` = 1 ";
         $result = $conn->query($sql);
         //while ($data = $result->fetch_assoc()) {
         return $result;

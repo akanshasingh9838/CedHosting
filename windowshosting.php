@@ -4,7 +4,7 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php include('header.php'); ?>
+<?php require_once('header.php'); ?>
 	<!---header--->
 		<!---singleblog--->
 				<div class="content">

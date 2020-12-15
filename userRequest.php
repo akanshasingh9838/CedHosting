@@ -1,8 +1,8 @@
 <?php 
 
 session_start();
-require('User.php');
-require('Dbcon.php');
+require_once('User.php');
+require_once('Dbcon.php');
 $user = new User();
 $dbcon=new Dbcon();
 if ($_POST['action'] == 'verify_email_otp') {

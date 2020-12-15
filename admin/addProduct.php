@@ -1,5 +1,5 @@
 <?php
-  require 'header.php';
+  require_once 'header.php';
 //   require '../Product.php';
 //   $Product = new Product();
 
@@ -313,7 +313,7 @@
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Select Product Category</label>
                         <!-- <input type="text" id="input-username" class="form-control" placeholder="Username" value="lucky.jesse"> -->
-                        <select name="" id="" class="form-control">
+                        <select name="" id="productCategory" class="form-control">
                             <option value="">Select Category</option>
                             <option value="">Linux hosting</option>
                             <option value="">Windows hosting</option>
@@ -324,8 +324,10 @@
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
-                        <label class="form-control-label" for="input-email">Enter Product Name</label>
-                        <input type="text" id="input-email" class="form-control" placeholder="Enter Product Name">
+                        <label class="form-control-label" for="input-email">Enter Product Name</label>                       
+                        <span class="error_form" id="error_msg"></span>
+                        <input type="text" id="productName" class="form-control" placeholder="Enter Product Name">
+
                       </div>
                     </div>
                   </div>
@@ -333,7 +335,8 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Page URL</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="Page URL">
+                        <span class="error_form" id="urlerror_msg"></span>
+                        <input type="text" id="pageUrl" class="form-control" placeholder="Page URL">
                       </div>
                     </div>
                   </div>
@@ -346,13 +349,14 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Enter Monthly Price</label>
-                        <input type="text" id="input-username" class="form-control" placeholder="ex: 23">
+                        <span class="error_form" id="price_error_msg"></span>
+                        <input type="text"  id="monthlyPrice" class="form-control" placeholder="ex: 23">
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Enter Annual Price</label>
-                        <input type="text" id="input-email" class="form-control" placeholder="ex: 23">
+                        <input type="text"  id="annualPrice" class="form-control" placeholder="ex: 23">
                       </div>
                     </div>
                   </div>
@@ -360,7 +364,7 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">SKU</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="SKU">
+                        <input type="text"  id="sku" class="form-control" placeholder="SKU">
                       </div>
                     </div>
                   </div>
@@ -373,14 +377,14 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Web Space(in GB)</label>
-                        <input type="text" id="input-username" class="form-control" placeholder="Web Space(in GB)">
+                        <input type="text"  id="webSpace" class="form-control" placeholder="Web Space(in GB)">
                         <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Bandwidth (in GB)</label>
-                        <input type="text" id="input-email" class="form-control" placeholder="Bandwidth (in GB)">
+                        <input type="text"  id="bandwidth" class="form-control" placeholder="Bandwidth (in GB)">
                         <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
                       </div>
                     </div>
@@ -389,14 +393,14 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Free Domain</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="Free Domain">
+                        <input type="text" id="freeDomain" class="form-control" placeholder="Free Domain">
                         <h6 class="heading-small text-muted mb-4">Enter 0 if no domain available in this service</h6>
                       </div>
                     </div>
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Language / Technology Support</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="Free Domain">
+                        <input type="text" id="LTSupport" class="form-control" placeholder="Free Domain">
                         <h6 class="heading-small text-muted mb-4">Separate by (,) Ex: PHP, MySQL, MongoDB</h6>
                       </div>
                     </div>
@@ -405,13 +409,13 @@
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Mailbox</label>
-                        <input type="text" id="input-first-name" class="form-control" placeholder="Free Domain">
+                        <input type="text" id="mailbox" class="form-control" placeholder="Free Domain">
                         <h6 class="heading-small text-muted mb-4">Enter Number of mailbox will be provided, enter 0 if none</h6>
                       </div>
                     </div>
                   </div>
                   <div class="text-center">
-                      <input type="submit" value="Create Now" class="btn btn-primary">
+                      <input type="submit" id="createNow" value="Create Now"  class="btn btn-primary">
                     </div>
                 </div>
               </form>

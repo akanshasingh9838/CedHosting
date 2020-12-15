@@ -5,9 +5,9 @@ Author URL: http://w3layouts.com
 License: Creative Commons Attribution 3.0 Unported
 License URL: http://creativecommons.org/licenses/by/3.0/
 -->
-<?php include('header.php'); 
-require('Dbcon.php');
-require('User.php');
+<?php require_once('header.php'); 
+require_once('Dbcon.php');
+require_once('User.php');
 $dbcon = new Dbcon();
 $details = new User();
 if(isset($_POST['submit'])) {

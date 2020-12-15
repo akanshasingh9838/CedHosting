@@ -1,6 +1,6 @@
 <?php
-require '../Product.php';
-require '../Dbcon.php';
+require_once '../Product.php';
+require_once '../Dbcon.php';
 $dbcon =new Dbcon();
 $Product = new Product();
 

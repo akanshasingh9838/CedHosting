@@ -1,7 +1,7 @@
 <?php
-  require 'header.php';
-  require '../Product.php';
-  require '../Dbcon.php';
+  require_once 'header.php';
+  require_once '../Product.php';
+  require_once '../Dbcon.php';
   $Product = new Product();
   $dbcon= new Dbcon();
 $data =  $Product->fetchParentCategory($dbcon -> conn);
