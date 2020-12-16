@@ -1,7 +1,9 @@
 <?php
   require_once 'header.php';
-//   require '../Product.php';
-//   $Product = new Product();
+  require '../Product.php';
+  require_once('../Dbcon.php');
+  $dbcon = new Dbcon();
+  $product = new Product();
 
 // $data =  $Product->fetchParentCategory();
 // // print_r($data);
@@ -21,6 +23,7 @@
 //         $msg = "Faild !";
 //     }
 // }
+$hostingCat = $product-> fetchCategorynav($dbcon-> conn);
 ?>
 
   <!-- Main content -->
@@ -313,12 +316,22 @@
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Select Product Category</label>
                         <!-- <input type="text" id="input-username" class="form-control" placeholder="Username" value="lucky.jesse"> -->
-                        <select name="" id="productCategory" class="form-control">
+                        <select id="productCategory" class="form-control">
                             <option value="">Select Category</option>
-                            <option value="">Linux hosting</option>
+                            <?php 
+                              // $show_category = $product->show_category($db->connect(), '!=');
+                              foreach ($hostingCat as $key => $value) {
+                                ?>
+                                <option value="<?php echo $value['id']; ?>"><?php echo $value['prod_name']; ?></option>
+
+                                
+                                <?php
+                              }
+                            ?>
+                            <!-- <option value="">Linux hosting</option>
                             <option value="">Windows hosting</option>
                             <option value="">CMSHosting</option>
-                            <option value="">WordPress hosting</option>
+                            <option value="">WordPress hosting</option> -->
                         </select>
                       </div>
                     </div>

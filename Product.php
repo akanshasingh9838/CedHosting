@@ -43,8 +43,66 @@ class Product {
             
         }
         // echo $row;
-    }
     
+    function fetchCategoryCatpage($id,$conn)
+    {
+        $row = array();
+        $sql = "SELECT * FROM `tbl_product` WHERE `id` = '$id' ";
+        $result = $conn->query($sql);
+        $data = $result->fetch_assoc();
+        return $data;
+            
+    }
+        // echo $row;
+    
+    function  fetchprodDescription($id,$conn)
+    {
+        $arr = array();
+        $sql = "SELECT `tbl_product`.*,`tbl_product_description`.* FROM tbl_product JOIN tbl_product_description ON `tbl_product`.`id` = `tbl_product_description`.`prod_id` WHERE `tbl_product`.`prod_parent_id` = '$id' ";
+
+        $result = $conn->query($sql);
+        while ($data = $result->fetch_assoc()) 
+        {
+            $arr[] = $data;
+        }
+        return $arr;
+    }
+
+    function addProduct($productCategory, $productName, $pageUrl, $monthlyPrice, $annualPrice, $sku, $webSpace, $freeDomain, $bandwidth, $LTSupport, $mailbox, $conn)
+    {
+        $productDesc = array(
+            'webSpace'=>$webSpace,
+            'bandwidth'=>$bandwidth,
+            'freeDomain'=>$freeDomain,
+            'LTSupport'=>$LTSupport,
+            'mailbox'=>$mailbox
+        );
+
+        $jsonProductDesc = json_encode($productDesc);
+
+        $sql = "INSERT INTO `tbl_product`(`prod_parent_id`, `prod_name`, `html`, `prod_available`, `prod_launch_date`)
+        VALUES ('$productCategory', '$productName', '$pageUrl', '1', NOW())";
+
+        if ($conn->query($sql) === true) {
+            $last_id = $conn->insert_id; // last id
+            // $msg = $last_id;
+            $sql = "INSERT INTO `tbl_product_description` (`prod_id`, `description`, `mon_price`, `annual_price`, `sku`) VALUES ('$last_id', '$jsonProductDesc', '$monthlyPrice', '$annualPrice', '$sku')";
+
+            if ($conn->query($sql) === true) {
+                $msg = "Product Added Successfully !";
+            } else {
+                $msg = "Error: " . $sql . "<br>" . $conn->error;
+            }
+            
+        } else {
+            $msg = "Error: " . $sql . "<br>" . $conn->error;
+            // $msg = "error";
+        }
+
+
+        return $msg;
+    }
+}
 
 
 

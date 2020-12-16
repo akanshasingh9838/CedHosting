@@ -33,6 +33,7 @@ $(document).ready(function() {
             
         }
     }
+    
     function check_urlname(){
         var pattern= /^[a-zA-Z]*$/;
         var pageUrl =$("#pageUrl").val();
@@ -49,17 +50,57 @@ $(document).ready(function() {
             
         }
     }
-    $('#createNow').click(function(){
+    $('#createNow').click(function(e){
+        e.preventDefault();
         error_pname=false;
         check_pname();
         check_urlname();
-        if(error_pname == false &&  error_uname == false){
-            alert("successfull");
-            return true;
-        }
-        else{
+        if(error_pname == true &&  error_uname == true){
             alert("Please fill the form correctly");
             return false;
+           
+        }
+        else {
+            alert("successfull");
+            var productCategory = $('#productCategory').val();
+            var productName = $('#productName').val();
+            var pageUrl = $('#pageUrl').val();
+            var monthlyPrice = $('#monthlyPrice').val();
+            var annualPrice = $('#annualPrice').val();
+            var sku = $('#sku').val();
+            var webSpace = $('#webSpace').val();
+            var freeDomain = $('#freeDomain').val();
+            var bandwidth = $('#bandwidth').val();
+            var LTSupport = $('#LTSupport').val();
+            var mailbox = $('#mailbox').val();
+            // console.log( productCategory , productName , pageUrl , monthlyPrice , annualPrice , sku , webSpace , freeDomain , bandwidth , LTSupport , mailbox);
+            $.ajax({
+                url : 'adminRequest.php',
+                type: 'POST',
+                data : {
+                    productCategory:productCategory,
+                    productName : productName,
+                    pageUrl :  pageUrl,
+                    monthlyPrice:monthlyPrice,
+                    annualPrice : annualPrice,
+                    sku:sku,
+                    webSpace : webSpace,
+                    freeDomain : freeDomain,
+                    bandwidth : bandwidth,
+                    LTSupport : LTSupport,
+                    mailbox : mailbox,
+                    action : 'addProductDetails'
+                },
+                success : function (msg)
+                {
+                    alert(msg);
+                    window.location.reload();
+                },
+                error : function ()
+                {
+                    alert('error');
+                }
+            });
         }
     });
 });

@@ -9,6 +9,8 @@
 	//echo $filename;
 	$hostingmenu=array("linuxhosting.php","cmshosting.php","windowshosting.php","wordpresshosting.php");
 	$hostingCat = $products-> fetchCategorynav($dbcon-> conn);
+
+	// print_r($_SESSION['userdata']);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -110,7 +112,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<?php 
 										// $show_category = $product->show_category($db->connect(), '!=');
 										foreach ($hostingCat as $key => $value) {
-											echo "<li><a href='".$value['html']."?id=".$value['id']."'>".$value['prod_name']."</a></li>";
+											echo "<li><a href='catpage.php?id=".$value['id']."'>".$value['prod_name']."</a></li>";
 										}
 									?>
 									</ul>
@@ -125,15 +127,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<li class="<?php if($file[0]=="contact.php"):?>active<?php  endif; ?>"><a href="contact.php">Contact</a></li>
 								<li class="<?php if($file[0]=="cart.php"):?>active<?php  endif; ?>"><a href="cart.php"><i class="fas fa-shopping-cart"></i></a></li>
 								<?php
-								if(!isset($_SESSION['userdata'])|| !isset($_SESSION['admindata']))
-								{?>
-								<li class="<?php if($file[0]=="login.php"):?>active<?php  endif; ?>"><a href="login.php">Login</a></li>
-								<?php
-								}
-								//elseif (isset($_SESSION['userdata'])) {
-									# code...
-								else{ ?>
+								if (isset($_SESSION['userdata'])) {
+								?>
 									<li class="<?php if($file[0]=="logout.php"):?>active<?php  endif; ?>"><a href="logout.php">Logout</a></li>
+								<?php
+									} else { 
+								?>
+									<li class="<?php if($file[0]=="login.php"):?>active<?php  endif; ?>"><a href="login.php">Login</a></li>
 									<?php
 								}
 								?>

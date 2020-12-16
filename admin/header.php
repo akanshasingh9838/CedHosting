@@ -1,5 +1,6 @@
 <?php
 session_start();
+// require 'User.php';
 // if ($_SESSION['admindata'] == "") {
 //     header('location: ../index.php');
 // }
@@ -24,7 +25,7 @@ session_start();
   <!-- Argon CSS -->
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="adminScript.js"></script>
+  <!-- <script src="adminScript.js"></script> -->
 </head>
 
 <body>
