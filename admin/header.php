@@ -25,7 +25,7 @@ session_start();
   <!-- Argon CSS -->
   <link rel="stylesheet" href="assets/css/argon.css?v=1.2.0" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <!-- <script src="adminScript.js"></script> -->
+  <script src="adminScript.js"></script>
 </head>
 
 <body>
@@ -70,7 +70,7 @@ session_start();
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="examples/profile.html">
+              <a class="nav-link" href="viewProduct.php">
                 <i class="ni ni-single-02 text-yellow"></i>
                 <span class="nav-link-text">View Products</span>
               </a>

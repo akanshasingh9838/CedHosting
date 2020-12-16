@@ -21,6 +21,7 @@ class Product {
             return false;
         }
     }
+    
     function fetchCategory($conn)
     {
         $row['data'] = array();
@@ -28,7 +29,7 @@ class Product {
         $result = $conn->query($sql);
         $i = 1;
         while ($data = $result->fetch_assoc()) {
-            $row['data'][] = array($i++, $data['prod_parent_id'], $data['prod_name'], $data['link'], $data['prod_available'], $data['prod_launch_date'], "<a class='btn btn-danger text-light'>Delete</a><button type='button' class='btn btn btn-outline-success actioncategory' data-toggle='modal' data-target='#modal-form' data-action='edit' data-id='".$data['id']."'>Edit</button>" );
+            $row['data'][] = array($i++, $data['prod_parent_id'], $data['prod_name'], $data['html'], $data['prod_available'], $data['prod_launch_date'], "<a class='btn btn-danger text-light' id= 'deleteProduct' >Delete</a><button type='button' class='btn btn btn-outline-success actioncategory' data-toggle='modal' data-target='#modal-form' data-action='edit' data-id='".$data['id']."'>Edit</button>" );
         }
         echo json_encode($row);
     }
@@ -41,9 +42,26 @@ class Product {
         //while ($data = $result->fetch_assoc()) {
         return $result;
             
-        }
+    }
         // echo $row;
-    
+    function showProductTable($conn){
+        $row=array();
+        $sql="SELECT `tbl_product`.*,`tbl_product_description`.* FROM tbl_product JOIN tbl_product_description ON `tbl_product`.`id` = `tbl_product_description`.`prod_id` ";
+        $result = $conn -> query($sql);
+        $i=1;
+        
+        while($data = $result->fetch_assoc()){
+            $desc = json_decode($data['description']);
+            $webSpace = $desc->{'webSpace'};
+            $bandwidth = $desc->{'bandwidth'};
+            $freeDomain = $desc->{'freeDomain'};
+            $LTSupport = $desc->{'LTSupport'};
+            $mailBox = $desc->{'mailbox'};
+
+            $row['data'][] =array($i++,$data['prod_name'],$data['html'],$data['prod_available'],$data['prod_launch_date'],$webspace,$bandwidth,$freeDomain,$LTSupport,$mailBox,$data['mon_price'],$data['annual_price'],$data['sku'],"<a class='btn btn-danger text-light'>Delete</a><button type='button' class='btn btn btn-outline-success actioncategory' data-toggle='modal' data-target='#modal-form' data-action='edit' data-id='".$data['id']."'>Edit</button>" );
+        }
+        echo json_encode($row);        
+    } 
     function fetchCategoryCatpage($id,$conn)
     {
         $row = array();
@@ -98,7 +116,6 @@ class Product {
             $msg = "Error: " . $sql . "<br>" . $conn->error;
             // $msg = "error";
         }
-
 
         return $msg;
     }

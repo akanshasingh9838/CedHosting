@@ -6,7 +6,12 @@ $product = new Product();
 
 
 if (isset($_GET['fetchCategory'])) {
-    $data = $Product->fetchCategory($dbcon-> conn);
+    $data = $product->fetchCategory($dbcon-> conn);
+    echo $data;
+}
+
+if (isset($_GET['showProductTable'])) {
+    $data = $product->showProductTable($dbcon-> conn);
     echo $data;
 }
 

@@ -45,7 +45,7 @@
 <link rel="stylesheet" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.min.css">
 
 <!-- data table cdn link end -->
-  <script src="adminScript.js"></script>
+  <!-- <script src="adminScript.js"></script> -->
 
 </body>
 

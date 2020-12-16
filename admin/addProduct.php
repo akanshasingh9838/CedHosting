@@ -369,6 +369,7 @@ $hostingCat = $product-> fetchCategorynav($dbcon-> conn);
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Enter Annual Price</label>
+                        <span class="error_form" id="annualPrice_error_msg"></span>
                         <input type="text"  id="annualPrice" class="form-control" placeholder="ex: 23">
                       </div>
                     </div>
@@ -377,6 +378,7 @@ $hostingCat = $product-> fetchCategorynav($dbcon-> conn);
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">SKU</label>
+                         <span class="error_form" id="sku_error_msg"></span>
                         <input type="text"  id="sku" class="form-control" placeholder="SKU">
                       </div>
                     </div>
@@ -390,6 +392,7 @@ $hostingCat = $product-> fetchCategorynav($dbcon-> conn);
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-username">Web Space(in GB)</label>
+                        <span class="error_form" id="webspace_error_msg"></span>
                         <input type="text"  id="webSpace" class="form-control" placeholder="Web Space(in GB)">
                         <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
                       </div>
@@ -397,6 +400,7 @@ $hostingCat = $product-> fetchCategorynav($dbcon-> conn);
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-email">Bandwidth (in GB)</label>
+                        <span class="error_form" id="bandwidth_error_msg"></span>
                         <input type="text"  id="bandwidth" class="form-control" placeholder="Bandwidth (in GB)">
                         <h6 class="heading-small text-muted mb-4">Enter 0.5 for 512 MB</h6>
                       </div>
@@ -406,6 +410,7 @@ $hostingCat = $product-> fetchCategorynav($dbcon-> conn);
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Free Domain</label>
+                        <span class="error_form" id="freedomain_error_msg"></span>
                         <input type="text" id="freeDomain" class="form-control" placeholder="Free Domain">
                         <h6 class="heading-small text-muted mb-4">Enter 0 if no domain available in this service</h6>
                       </div>
@@ -413,6 +418,7 @@ $hostingCat = $product-> fetchCategorynav($dbcon-> conn);
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Language / Technology Support</label>
+                        <span class="error_form" id="ltsupport_error_msg"></span>
                         <input type="text" id="LTSupport" class="form-control" placeholder="Free Domain">
                         <h6 class="heading-small text-muted mb-4">Separate by (,) Ex: PHP, MySQL, MongoDB</h6>
                       </div>
@@ -422,7 +428,9 @@ $hostingCat = $product-> fetchCategorynav($dbcon-> conn);
                     <div class="col-lg-6">
                       <div class="form-group">
                         <label class="form-control-label" for="input-first-name">Mailbox</label>
+                        <span class="error_form" id="mailbox_error_msg"></span>
                         <input type="text" id="mailbox" class="form-control" placeholder="Free Domain">
+                       
                         <h6 class="heading-small text-muted mb-4">Enter Number of mailbox will be provided, enter 0 if none</h6>
                       </div>
                     </div>
