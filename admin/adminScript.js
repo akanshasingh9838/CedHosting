@@ -102,7 +102,7 @@ $(document).ready(function() {
     }
 
     function check_monthlyPrice(){
-        var pattern= /^[a-zA-Z]*$/;
+        var pattern= /[1-9]\d*|0\d+/;
         var monthlyPrice =$("#monthlyprice").val();
         if(pattern.test(monthlyPrice) && monthlyPrice !== '') {
             $("#price_error_msg").hide();
@@ -118,9 +118,9 @@ $(document).ready(function() {
         }
     }
     function check_annualPrice(){
-        var pattern= /^[a-zA-Z]*$/;
+        var pattern= /^[0-9]/;
         var annualPrice =$("#annualPrice").val();
-        if(pattern.test(annualPrice) && annualPrice !== '') {
+        if(!pattern.test(annualPrice) && annualPrice !== '') {
             $("#annualPrice_error_msg").hide();
             $("#annualPrice").css("border-bottom","2px solid green");
          
@@ -135,9 +135,9 @@ $(document).ready(function() {
     }
 
     function check_sku(){
-        var pattern= /^[a-zA-Z]*$/;
+        var pattern= /^[0-9]/;
         var sku =$("#sku").val();
-        if(pattern.test(sku) && sku !== '') {
+        if(!pattern.test(sku) && sku !== '') {
             $("#sku_error_msg").hide();
             $("#sku").css("border-bottom","2px solid green");
          

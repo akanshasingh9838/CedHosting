@@ -9,6 +9,7 @@ $id= $_GET['id'];
 if(!isset($id)){
     echo "<script>window.location.href = 'index.php'</script>";
 }
+
 $res = $product -> fetchCategoryCatpage($id,$dbcon -> conn);
 $rows = $product -> fetchprodDescription($id,$dbcon -> conn);
 // print_r($rows);
@@ -72,7 +73,27 @@ $rows = $product -> fetchprodDescription($id,$dbcon -> conn);
 													<li><strong>location</strong> : <img src="images/india.png"></li>
 													</ul>
 												</div>
-												<a href="#">buy now</a>
+												<a href="#" data-prodid = "<?php echo $row['prod_id']; ?>" id="buynow" data-toggle="modal" data-target="#popmodal">buy now</a>
+												<div class="modal fade" id="popmodal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+												<div class="modal-dialog" role="document">
+													<div class="modal-content">
+													<div class="modal-header">
+														<h5 class="modal-title" id="exampleModalLabel">Choose Your Pack</h5>
+														<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+														</button>
+													</div>
+													<div class="modal-body">
+														<a href="#" type="button" class="btn btn-secondary packbtn" id="annual" onclick = "pack(this.id)";>Annual Pack</a>
+														<a href="#" type="button" class="btn btn-secondary packbtn" id="monthly" onclick = "pack(this.id)">Monthly Pack</a>
+													</div>
+													<div class="modal-footer">
+														<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+														<button type="button" class="btn btn-primary" >Save changes</button>
+													</div>
+													</div>
+												</div>
+												</div>
 											</div>
 											<?php endforeach; ?>
 											<!-- <div class="col-md-3 linux-price">
@@ -150,7 +171,7 @@ $rows = $product -> fetchprodDescription($id,$dbcon -> conn);
 													<li><strong>location</strong> : <img src="images/us.png"></li>
 													</ul>
 												</div>
-												<a href="#" class="us-button">buy now</a>
+												<a href="#"  class="us-button">buy now</a>
 											</div>
 											<div class="col-md-3 linux-price">
 												<div class="linux-top us-top">

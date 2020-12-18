@@ -1,3 +1,4 @@
+var prodid=0;
 $(document).ready(function() {
     // console.log('hii');
     $('#security').hide();
@@ -190,6 +191,34 @@ $(document).ready(function() {
     }
     });
 
-   
+    $('#buynow').click(function(){
+       prodid = $(this).data('prodid');
+       alert(prodid);
+    //    alert(p);
 
+
+    });
+   
+  
 });
+
+function pack(id){
+    var pack = id;
+    console.log(prodid);
+    $.ajax({
+        url:'userRequest.php',
+        type:'POST',
+        data:{
+            prodid:prodid, 
+            pack:pack,
+            action : 'addcart'
+        },
+        success:function(result){
+            alert(result);
+           
+        },
+        error: function(){
+            alert("error");
+        }
+    });
+}

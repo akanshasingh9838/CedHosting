@@ -119,6 +119,23 @@ class Product {
 
         return $msg;
     }
+
+    function fetchBuyData($pack,$prodid,$conn){
+        $arr=array();
+        if($pack == 'annual'){
+            $packcolumn = 'annual_price';
+        }
+        else{
+            $packcolumn = 'man_price';
+        }
+        $sql = "SELECT `tbl_product`.'prod_name',`tbl_product_description`.'$packcolumn' FROM tbl_product JOIN tbl_product_description ON `tbl_product`.`id` = `tbl_product_description`.`prod_id` WHERE `tbl_product_description`.`prod_id` = '$prodid' ";
+        $result = $conn->query($sql);
+        while ($data = $result->fetch_assoc()) 
+        {
+            $arr[] = $data;
+        }
+        return $arr;
+    }
 }
 
 
